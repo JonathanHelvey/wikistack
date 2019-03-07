@@ -14,9 +14,9 @@ app.use('', (req, res) => {
 });
 
 db.authenticate().
-  then(() => {
+then(() => {
     console.log('connected to the database');
-  })
+})
 
 const PORT = 3000;
 
