@@ -1,6 +1,7 @@
 const express = require("express");
 const morgan = require("morgan");
 const app = express();
+const { db } = require('./models');
 
 //static folder
 app.use(express.static(__dirname + "/public"));
@@ -12,7 +13,10 @@ app.use('', (req, res) => {
     res.send('');
 });
 
-
+db.authenticate().
+  then(() => {
+    console.log('connected to the database');
+  })
 
 const PORT = 3000;
 
