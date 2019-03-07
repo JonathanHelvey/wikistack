@@ -20,6 +20,16 @@ then(() => {
 
 const PORT = 3000;
 
-app.listen(PORT, () => {
-    console.log(`App listening in port ${PORT}`);
-});
+
+const init = async () => {
+    // await User.sync()
+    // await Page.sync()
+    await db.sync();
+
+    app.listen(PORT, () => {
+        console.log(`App listening in port ${PORT}`);
+    });
+};
+
+init();
+
