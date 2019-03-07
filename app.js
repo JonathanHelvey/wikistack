@@ -2,6 +2,7 @@ const express = require("express");
 const morgan = require("morgan");
 const app = express();
 const { db } = require('./models');
+const wiki = require('./routs/wiki')
 
 //static folder
 app.use(express.static(__dirname + "/public"));
@@ -9,9 +10,13 @@ app.use(express.static(__dirname + "/public"));
 app.use(express.urlencoded({ extended: false }));
 app.use(morgan("dev"));
 
-app.use('', (req, res) => {
-    res.send('');
+app.use('/wiki', wiki)
+
+app.use('/', (req, res) => {
+    res.redirect('/wiki');
 });
+
+
 
 db.authenticate().
 then(() => {
